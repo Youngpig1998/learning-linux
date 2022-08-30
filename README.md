@@ -15,21 +15,20 @@
 
 ## 进阶篇
 
-- ### 进程管理 :point_down:
+### 进程管理 
 
-  - [进程、线程基础知识](https://xiaolincoding.com/os/4_process/process_base.html) 
+- [进程、线程基础知识](https://xiaolincoding.com/os/4_process/process_base.html) 
+- [进程间有哪些通信方式？](https://xiaolincoding.com/os/4_process/process_commu.html) 
+- [多线程冲突了怎么办？](https://xiaolincoding.com/os/4_process/multithread_sync.html) 
+- [怎么避免死锁？](https://xiaolincoding.com/os/4_process/deadlock.html) 
+- [什么是悲观锁、乐观锁？](https://xiaolincoding.com/os/4_process/pessim_and_optimi_lock.html) 
+- [一个进程最多可以创建多少个线程？](https://xiaolincoding.com/os/4_process/create_thread_max.html) 
+- [线程崩溃了，进程也会崩溃吗？](https://xiaolincoding.com/os/4_process/thread_crash.html)
 
-  - [进程间有哪些通信方式？](https://xiaolincoding.com/os/4_process/process_commu.html) 
+### Namespace
 
-  - [多线程冲突了怎么办？](https://xiaolincoding.com/os/4_process/multithread_sync.html) 
-
-  - [怎么避免死锁？](https://xiaolincoding.com/os/4_process/deadlock.html) 
-
-  - [什么是悲观锁、乐观锁？](https://xiaolincoding.com/os/4_process/pessim_and_optimi_lock.html) 
-
-  - [一个进程最多可以创建多少个线程？](https://xiaolincoding.com/os/4_process/create_thread_max.html) 
-
-  - [线程崩溃了，进程也会崩溃吗？](https://xiaolincoding.com/os/4_process/thread_crash.html)
+- [UTS Namespace](./workspace/namespace/uts-namespace)
+- [User Namespace](./workspace/namespace/user-namespace)
 
 
 
@@ -43,24 +42,15 @@
 
 ### 项目
 
-* [container_from_scratch](https://github.com/Youngpig1998/containers-from-scratch)
 
 
-
-### Docker Compose
-
-
+### 
 
 ## Book
 
-* [Docker--从入门到实践 by Baohua Yang ](https://yeasy.gitbook.io/docker_practice/)
 
-  
 
 ## Blog
-
-* [Martin Fowler](https://martinfowler.com/): Chief Scientist of Thoughtworks
-* [Sparkdev](https://www.cnblogs.com/sparkdev/category/927855.html?page=2)
 
 
 

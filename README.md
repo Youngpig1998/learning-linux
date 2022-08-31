@@ -8,7 +8,9 @@
 
 * [lesson2:⽂件查看和处理](./workspace/lesson2)
 
-* [lesson3:klill 命令](./workspace/lesson3)
+* [lesson3:klill命令](./workspace/lesson3)
+
+* [lesson4: nohup命令详解](./workspace)
 
   
 

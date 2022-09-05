@@ -1,6 +1,6 @@
-# Learning notes for Docker
+# Learning notes for Linux
 
-​	此项目为Docker学习中的知识总结、项目源码等，未完待续。
+​	此项目为Linux学习中的知识总结、项目源码等，未完待续。
 
 ## 基础篇
 
@@ -11,6 +11,16 @@
 * [lesson3:klill命令](./workspace/lesson3)
 
 * [lesson4: nohup命令详解](./workspace)
+
+* [lesson5：source命令](./workspace/lesson5)
+
+* [lesson6：进程管理](./workspace/lesson6)
+
+* [lesson7：软件包管理](./workspace/lesson7)
+
+* [lesson8：网络管理](./workspace/senior/p8)
+
+* [lesson9：Linux top命令的数据从哪儿来？](./workspace/lesson9)
 
   
 
@@ -46,7 +56,7 @@
 
 
 
-### 
+
 
 ## Book
 
@@ -83,31 +93,6 @@
 
 
 
-
-
-
-
-
-## 关机/重启/注销
-
-| 常用命令          | 作用                     |
-| ----------------- | ------------------------ |
-| shutdown -h now   | 即刻关机                 |
-| shutdown -h 10    | 10分钟后关机             |
-| shutdown -h 11:00 | 11：00关机               |
-| shutdown -h +10   | 预定时间关机（10分钟后） |
-| shutdown -c       | 取消指定时间关机         |
-| shutdown -r now   | 重启                     |
-| shutdown -r 10    | 10分钟之后重启           |
-| shutdown -r 11:00 | 定时重启                 |
-| reboot            | 重启                     |
-| init 6            | 重启                     |
-| init 0            | ⽴刻关机                 |
-| telinit 0         | 关机                     |
-| poweroff          | ⽴刻关机                 |
-| halt              | 关机                     |
-| sync              | buff数据同步到磁盘       |
-| logout            | 退出登录Shell            |
 
 ## 系统信息和性能查看
 
@@ -270,203 +255,6 @@
 | chown -R user1 dir1      | 改变⽬录的所有者属性                                         |
 | chgrp group1 file1       | 改变⽂件群组                                                 |
 | chown user1:group1 file1 | 改变⽂件的所有⼈和群组                                       |
-
-
-
-
-
-
-
-
-
-
-
-# Linux top命令的数据从哪儿来？
-
-​	top命令是linux下非常重要的命令，帮助我们快速查看系统状态。
-
-​	那么top是如何获取系统各项状态指标的呢？
-
-​	我们用strace命令跟踪一下top的执行
-
-```shell
-$ strace -o /tmp/strace_top.txt top -b -n 1
-```
-
-​	**strace的作用**：
-
-​	Linux中，进程不能直接访问硬件设备，当进程需要访问硬件设备(比如读取磁盘文件，接收网络数据等等)时，必须由用户态模式切换至内核态模式，通过系统调用访问硬件设备。strace可以跟踪到一个进程产生的系统调用。上面的命令中，把top的执行情况保存到了文件中。我们可以查看文件内容：
-
-```shell
-$ vim /tmp/strace_top.txt
-```
-
- 
-
-​	文件内容非常多，也比较复杂，但可以看到一个规律，就是对非常多的文件执行打开、读取、分析、关闭的动作，例如
-
-![Linux top命令的数据从哪儿来？_java](https://s2.51cto.com/images/blog/202104/22/27823f96a11f79dd7332daa093cc8fa1.png)
-
-​	并且在读取的文件中，涉及 **/proc** 目录下的文件非常多。**/proc** 本身是一个虚拟文件系统，并非存在于硬盘之中，而是由Linux内核凭空创建，保存在内存中。/proc 的**目录结构**为
-
-/proc
-|--/version
-|--/fs 
-|--/stat 
-|--......
-|--/N/stat
-|--/N/mem
-|--/N/fs
-|--/N/......
-
-​	**/proc** 下的文件是系统的相关信息
-
-​	**/proc/N** N是以进程号为名字的目录，其中是此进程的相关信息文件
-
-​	如/proc/2000，2000为PID，Linux 内核将与之关联的信息打印到此目录相关文件中
-
-​	所以/proc目录的文件就是 `top` 的重要消息来源
-
-
-**例如**
-
-/proc/cpuinfo 
-
-​	cpu的硬件信息，如型号、速率、核数、cache大小……
-
-/proc/meminfo
-
-​	内存的信息，如内存总量、free空间、swap空间……
-
-/proc/stat
-
-​	所有的CPU活动状态的信息
-
-/proc/diskstats 
-
-​	磁盘信息
-
-/proc/loadavg 
-
-​	根据过去一段时间内CPU和IO的状态得出的负载状态
-
-/proc/N/fd 
-
-​	进程相关的所有的文件描述符
-
-/proc/N/mem 
-
-​	进程持有的内存，不可读
-
-/proc/N/stat 
-
-​	进程的状态，内容可读性差，但其中包含了很多重要的信息，如：该任务在用户态运行的时间、该任务在核心态运行的时间、当前驻留物理地址空间的大小、虚拟地址空间大小、父进程ID、线程组号...
-
-/proc 中包含了丰富的系统信息，是各种监控命令和工具的重要数据来源。
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# RPM包管理命令
-
-| 常用命令                  | 作用                          |
-| ------------------------- | ----------------------------- |
-| rpm -qa                   | 查看已安装的rpm包             |
-| rpm -q pkg_name           | 查询某个rpm包                 |
-| rpm -q --whatprovides xxx | 显示xxx功能是由哪个包提供的   |
-| rpm -q --whatrequires xxx | 显示xxx功能被哪个程序包依赖的 |
-| rpm -q --changelog xxx    | 显示xxx包的更改记录           |
-| rpm -qi pkg_name          | 查看⼀个包的详细信息          |
-| rpm -qd pkg_name          | 查询⼀个包所提供的⽂档        |
-| rpm -qc pkg_name          | 查看已安装rpm包提供的配置⽂件 |
-| rpm -ql pkg_name          | 查看⼀个包安装了哪些⽂件      |
-| rpm -qf filename          | 查看某个⽂件属于哪个包        |
-| rpm -qR pkg_name          | 查询包的依赖关系              |
-| rpm -ivh xxx.rpm          | 安装rpm包                     |
-| rpm -ivh --test xxx.rpm   | 测试安装rpm包                 |
-| rpm -ivh --nodeps xxx.rpm | 安装rpm包时忽略依赖关系       |
-| rpm -e xxx                | 卸载程序包                    |
-| rpm -Fvh pkg_name         | 升级确定已安装的rpm包         |
-| rpm -Uvh pkg_name         | 升级rpm包(若未安装则会安装)   |
-| rpm -V pkg_name           | RPM包详细信息校验             |
-
-
-
-
-
-
-
-# YUM包管理命令
-
-| 常用命令                            | 作用                 |
-| ----------------------------------- | -------------------- |
-| yum repolist enabled                | 显示可⽤的源仓库     |
-| yum search pkg_name                 | 搜索软件包           |
-| yum install pkg_name                | 下载并安装软件包     |
-| yum install --downloadonly pkg_name | 只 下 载 不 安 装    |
-| yum list                            | 显示所有程序包       |
-| yum list installed                  | 查看当前系统已安装包 |
-| yum list updates                    | 查看可以更新的包列表 |
-| yum check-update                    | 查看可升级的软件包   |
-| yum update                          | 更新所有软件包       |
-| yum update pkg_name                 | 升级指定软件包       |
-| yum deplist pkg_name                | 列出软件包依赖关系   |
-| yum remove pkg_name                 | 删除软件包           |
-| yum clean all                       | 清除缓存             |
-| yum clean packages                  | 清除缓存的软件包     |
-| yum clean headers                   | 清除缓存的header     |
-
-# DPKG包管理命令
-
-| 常用命令             | 作用                  |
-| -------------------- | --------------------- |
-| dpkg -c xxx.deb      | 列出deb包的内容       |
-| dpkg -i xxx.deb      | 安装/更新deb包        |
-| dpkg -r pkg_name     | 移除deb包             |
-| dpkg -P pkg_name     | 移除deb包(不保留配置) |
-| dpkg -l              | 查看系统中已安装deb包 |
-| dpkg -l pkg_name     | 显示包的⼤致信息      |
-| dpkg -L pkg_name     | 查看deb包安装的⽂件   |
-| dpkg -s pkg_name     | 查看包的详细信息      |
-| dpkg –unpack xxx.deb | 解开deb包的内容       |
-
-# APT软件⼯具
-
-| 常用命令                  | 作用                   |
-| ------------------------- | ---------------------- |
-| apt-cache search pkg_name | 搜索程序包             |
-| apt-cache show pkg_name   | 获取包的概览信息       |
-| apt-get install pkg_name  | 安装/升级软件包        |
-| apt-get purge pkg_name    | 卸载软件（包括配置）   |
-| apt-get remove pkg_name   | 卸载软件（不包括配置） |
-| apt-get update            | 更新包索引信息         |
-| apt-get upgrade           | 更新已安装软件包       |
-| apt-get clean             | 清理缓存               |
-
-
 
 
 

@@ -37,6 +37,10 @@
 - [一个进程最多可以创建多少个线程？](https://xiaolincoding.com/os/4_process/create_thread_max.html) 
 - [线程崩溃了，进程也会崩溃吗？](https://xiaolincoding.com/os/4_process/thread_crash.html)
 
+### 网络管理
+
+- [DNS笔记](https://www.cnblogs.com/ZhuChangwu/p/15241211.html)
+
 ### Namespace
 
 - [UTS Namespace](./workspace/namespace/uts-namespace)
@@ -46,7 +50,12 @@
 
 ## Quiz
 
-
+- [Linux中软连接与硬连接](./workspace/senior/p1)
+- [iptables四表五链](https://mp.weixin.qq.com/s/bwK_ECwmL6OAjKHkiqGNpA)
+- [Linux中grep|awk|sort|uniq](./workspace/senior/p2)
+- [rm删除文件后磁盘仍然占用](https://blog.csdn.net/zwe7616175/article/details/100728273)
+- [什么是僵尸进程与孤儿进程](https://blog.csdn.net/a745233700/article/details/120715371)
+- [Find命令查找最近几天修改的文件](https://blog.csdn.net/linux_hua130/article/details/120782534)
 
 
 
@@ -64,7 +73,7 @@
 
 ## Blog
 
-
+- [赐我白日梦](https://www.cnblogs.com/ZhuChangwu/category/1509541.html)
 
 ## Video
 

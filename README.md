@@ -38,6 +38,7 @@
 - [什么是悲观锁、乐观锁？](https://xiaolincoding.com/os/4_process/pessim_and_optimi_lock.html) 
 - [一个进程最多可以创建多少个线程？](https://xiaolincoding.com/os/4_process/create_thread_max.html) 
 - [线程崩溃了，进程也会崩溃吗？](https://xiaolincoding.com/os/4_process/thread_crash.html)
+- [什么是僵尸进程与孤儿进程](https://blog.csdn.net/a745233700/article/details/120715371)
 
 ### 网络管理
 
@@ -56,7 +57,6 @@
 - [iptables四表五链](https://mp.weixin.qq.com/s/bwK_ECwmL6OAjKHkiqGNpA)
 - [Linux中grep|awk|sort|uniq](./workspace/senior/p2)
 - [rm删除文件后磁盘仍然占用](https://blog.csdn.net/zwe7616175/article/details/100728273)
-- [什么是僵尸进程与孤儿进程](https://blog.csdn.net/a745233700/article/details/120715371)
 - [Find命令查找最近几天修改的文件](https://blog.csdn.net/linux_hua130/article/details/120782534)
 - [df和du的使用及区别](https://blog.csdn.net/liuyang9909/article/details/123249917)
 - [Linux的第一个进程](./workspace/senior/p3)
